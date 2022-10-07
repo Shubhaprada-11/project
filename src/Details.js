@@ -98,6 +98,7 @@ const Details = () => {
                   <div key={index}>
                   <input value={item} type="checkbox"  onChange={handleCheck} />
                   <span className={isChecked(item)}>{item}</span>
+                  {/* {console.log(`${checkboxes}`)}; */}
                   </div>
                   ))}            
                 </div>
