@@ -68,23 +68,20 @@ const Details = () => {
           const handleCheck = (event) => {
             var updatedList = [...checked];
             if (event.target.checked) {
-              updatedList = [...checked, event.target.value];
+                    
+                    updatedList = [...checked, event.target];
             } else {
-              updatedList.splice(checked.indexOf(event.target.value), 1);
+              updatedList.splice(checked.indexOf(event.target), 1);
             }
+            console.log(`${checkboxes}`);
             setChecked(updatedList);
           };
-        
           // Generate string of checked items
           const checkedItems = checked.length
             ? checked.reduce((total, item) => {
                 return total + ", " + item;
               })
             : "";
-        
-          // Return classes based on whether item is checked
-          var isChecked = (item) =>
-            checked.includes(item) ? "checked-item" : "not-checked-item";
         
       //getData={};
       return (
@@ -96,8 +93,8 @@ const Details = () => {
                 <div>
                 {checkboxes.map((item, index) => (
                   <div key={index}>
-                  <input value={item} type="checkbox"  onChange={handleCheck} />
-                  <span className={isChecked(item)}>{item}</span>
+                  <input value={item} type="checkbox" onChange={handleCheck} />
+                  
                   {/* {console.log(`${checkboxes}`)}; */}
                   </div>
                   ))}            
