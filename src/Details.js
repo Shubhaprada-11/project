@@ -18,6 +18,7 @@ let  checkboxes=[], subdiv=[];
 
 const Details = () => {
       const [getData, setData] = useState([]);
+      const [checked, setChecked] = useState([]);
       const fetchingData = async () => {
             const config ={
                         method: 'GET',
@@ -63,31 +64,44 @@ const Details = () => {
       useEffect(() => {
             fetchingData();
           }, [])
-      
-          let text = "";
-          for (let i = 0; i < checkboxes.length; i++) {
-            text += "<input type= 'checkbox' checked={checkboxes[0]}>hello </input><br />";
-          } 
-          
+
+          const handleCheck = (event) => {
+            var updatedList = [...checked];
+            if (event.target.checked) {
+              updatedList = [...checked, event.target.value];
+            } else {
+              updatedList.splice(checked.indexOf(event.target.value), 1);
+            }
+            setChecked(updatedList);
+          };
+        
+          // Generate string of checked items
+          const checkedItems = checked.length
+            ? checked.reduce((total, item) => {
+                return total + ", " + item;
+              })
+            : "";
+        
+          // Return classes based on whether item is checked
+          var isChecked = (item) =>
+            checked.includes(item) ? "checked-item" : "not-checked-item";
+        
       //getData={};
       return (
             <div>
               <li key={getData._id}>
                 <div>{getData._id}</div>
                 <div>{getData.status}</div>
-                <p id="demo"></p>
-                <script type="text/javascript">func();
-                function func(){
-                  document.getElementById("demo").innerHTML = text;
-                };
-                </script>
+            </li>
                 <div>
-
-                
-
+                {checkboxes.map((item, index) => (
+                  <div key={index}>
+                  <input value={item} type="checkbox"  onChange={handleCheck} />
+                  <span className={isChecked(item)}>{item}</span>
+                  </div>
+                  ))}            
                 </div>
-              </li>
-              
+                {`Items checked are " ${checkedItems}`}
             </div>
 
           );
