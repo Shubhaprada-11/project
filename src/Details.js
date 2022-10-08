@@ -1,7 +1,6 @@
 import React from "react";
-import axios from "axios";
 import { useState, useEffect } from "react";
-import AddComments from "./AddComments";
+
 const API = "http://localhost:8000/api";
 const assignmentId = "633efb26c56cf8de7bf06aa6";
 const assignmentId2 = "6340d42ec1fe7c53798d397d";
@@ -13,8 +12,7 @@ const token =
 const url1 = `${API}/assignment/${assignmentId}/${userId}`;
 const url2 = `${API}/user/${userId}`;
 const urlc = `${API}/assignment/${assignmentId2}/comment/${userId}`;
-let checkboxes = [],
-  subdiv = [];
+let checkboxes = [],  subdiv = [];
 // const newArray=[];
 // newArray.len=checkboxes.len ;
 // for(let j =0; j<newArray.len;j++){
@@ -88,43 +86,11 @@ const Details = () => {
 
   const handleClick = (event) => {
     event.preventDefault();
-    const CommentObject = {
-      user: "633e3946e6834326fd628855",
-      comment: this.state.value,
-      time: Date().toLocaleString(),
-    };
-    axios
-      .post(`${urlc}`, CommentObject)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
     setValue(event.target.value);
     console.log(event.target.value);
   };
 
   //edited
-
-  const onAddCommentsHandler = async (addedComment) => {
-    console.log("inside comments");
-    console.log(addedComment);
-    console.log(JSON.stringify(addedComment));
-        const newComment = {
-          user: "633e3946e6834326fd628855",
-          comment: addedComment.data,
-          time: Date().toLocaleString(),
-        };
-        const res = await fetch(`${urlc}`, {
-          method: "POST",
-          body: JSON.stringify(newComment),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        console.log(res);
-  };
 
   const handleValueChange = (event) => {
       setValue(event.target.value);
@@ -133,11 +99,11 @@ const Details = () => {
     //getData={};
     return (
       <div>
-        <li key={getData._id}>
-          <div>{getData._id}</div>
-          <div>{getData.status}</div>
-        </li>
+      <h1>Job Details and Updation</h1>
+          <div><h3>JobID</h3>{getData._id}</div><br />
+          <div><h3>Job Status</h3>{getData.status}</div>
         <div>
+         <h3>SubDivisions</h3>
           {checkboxes.map((item, index) => (
             <div key={index}>
               <input value={item} type="checkbox" onChange={handleCheck} />
@@ -145,10 +111,8 @@ const Details = () => {
               {/* {console.log(`${checkboxes}`)}; */}
             </div>
           ))}
-        </div>
-        {`Subdivisions checked are " ${checkedItems}`}
-        <AddComments onAddComments={onAddCommentsHandler} />
-        <div>
+          {`Subdivisions checked are ${checkedItems}`}
+       
           <form>
             <label htmlFor="message">Comments</label>
             <br></br>
