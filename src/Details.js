@@ -100,9 +100,9 @@ const Details = () => {
     return (
       <div>
       <h1>Job Details and Updation</h1>
-          <div><h3>JobID</h3>{getData._id}</div><br />
-          <div><h3>Job Status</h3>{getData.status}</div>
-        <div>
+          <div align="center"><h3>JobID</h3>{getData._id}</div><br />
+          <div align="center"><h3>Job Status</h3>{getData.status}</div>
+        <div align="center" >
          <h3>SubDivisions</h3>
           {checkboxes.map((item, index) => (
             <div key={index}>
@@ -112,11 +112,13 @@ const Details = () => {
             </div>
           ))}
           {`Subdivisions checked are ${checkedItems}`}
-       
+        </div>
+        
+        <div align="center">
           <form>
-            <label htmlFor="message">Comments</label>
+            <h3>Comments</h3>
             <br></br>
-            <textarea
+            <textarea cols="55" rows="15"
               id="message"
               name="message"
               value={value}

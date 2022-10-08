@@ -49,16 +49,14 @@ background-color: pink;
 }  
 button {   
    background-color: #4CAF50;   
-   width: 100%;  
-    color: black;   
-    padding: 15px;   
-    margin: 10px 0px;   
-    border: none;   
+   width: 10%;
+   color: black;
+   padding: 15px;
+   margin: 10px 679px;
+   border: none; 
     cursor: pointer;   
      }   
-form {   
-    border: 3px solid #f1f1f1;   
-}   
+   
 input[type=text], input[type=password] {   
     width: 100%;   
     margin: 8px 0;  
@@ -85,4 +83,15 @@ button:hover {
 }
 .in-progress{
   background-color: yellow;
+}
+
+label {
+  text-align: center;
+}
+
+.checkbox{
+  width: 200px;
+  background-color:#098043;
+  color:#fff;
+  margin: auto;
 }
